@@ -1,10 +1,16 @@
 package com.example.ControleInventario.ControleInventario.Entities;
 import java.util.Objects;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,10 +20,21 @@ public class Fornecedor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(unique = true)
     private String nome;
+    @Column(unique = true)
     private String email;
     private String telefone;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fornecedor_id")
+    private List<Produto> produto;
+    
     public Fornecedor(){}
 
     public Fornecedor(long id, String nome, String email, String telefone) {
