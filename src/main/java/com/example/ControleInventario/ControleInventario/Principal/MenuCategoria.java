@@ -2,12 +2,19 @@ package com.example.ControleInventario.ControleInventario.Principal;
 
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.example.ControleInventario.ControleInventario.Entities.Categoria;
+import com.example.ControleInventario.ControleInventario.Services.CategoriaService;
 
 @Component
 public class MenuCategoria {
 
     private Scanner sc = new Scanner(System.in);
+
+    @Autowired
+    private CategoriaService categoriaService;
 
     public void menuCategoria() {
         System.out.println("!---------------------------------------!");
@@ -23,24 +30,19 @@ public class MenuCategoria {
 
         switch (opcao) {
             case 1:
-                System.out.println("Cadastrar Categoria");
-                cadastrarCategoria();
+                categoriaService.salvarCategoria(new Categoria());
                 break;
             case 2:
-                System.out.println("Listar Categoria");
-                listarCategoria();
+                categoriaService.listarCategoria();
                 break;
             case 3:
-                System.out.println("Buscar Categoria");
-                buscarCategoria();
+                categoriaService.buscarCategoria();
                 break;
             case 4:
-                System.out.println("Atualizar Categoria");
-                atualizarCategoria();
+                categoriaService.atualizarCategoria();
                 break;
             case 5:
-                System.out.println("Excluir Categoria");
-                excluirCategoria();
+                categoriaService.excluirCategoria();
                 break;
             case 6:
                 System.out.println("Voltar para o Menu Principal");
@@ -50,24 +52,4 @@ public class MenuCategoria {
                 return;
         }
     }
-
-    private void cadastrarCategoria() {
-    }
-
-    private void listarCategoria() {
-
-    }
-
-    private void buscarCategoria() {
-
-    }
-
-    private void atualizarCategoria() {
-
-    }
-
-    private void excluirCategoria() {
-
-    }
-
 }

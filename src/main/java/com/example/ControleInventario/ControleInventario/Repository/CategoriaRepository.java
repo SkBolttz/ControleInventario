@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.ControleInventario.ControleInventario.Entities.Categoria;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
+
+    Object findByNome(String nomeCategoria);
     
 }

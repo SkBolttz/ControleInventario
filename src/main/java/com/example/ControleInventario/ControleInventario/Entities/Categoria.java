@@ -31,8 +31,7 @@ public class Categoria {
 
     public Categoria(){}
 
-    public Categoria(long id, String nome, String descricao) {
-        this.id = id;
+    public Categoria(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
     }
@@ -80,5 +79,10 @@ public class Categoria {
         return true;
     }
 
-    
+    @Override
+    public String toString() {
+        return String.format("Nome: %s \n" +
+                             "Descrição: %s \n", nome, descricao) +
+                             "----------------------------------";
+    }
 }

@@ -2,13 +2,19 @@ package com.example.ControleInventario.ControleInventario.Principal;
 
 import java.util.Scanner;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.example.ControleInventario.ControleInventario.Entities.Fornecedor;
+import com.example.ControleInventario.ControleInventario.Services.FornecedorService;
 
 @Component
 public class MenuFornecedor {
 
     private Scanner sc = new Scanner(System.in);
 
+    @Autowired
+    private FornecedorService fornecedorService;
     
     public void exibirMenuFornecedor() {
         System.out.println("!---------------------------------------!");
@@ -25,24 +31,19 @@ public class MenuFornecedor {
 
         switch (opcao) {
             case 1:
-                System.out.println("Cadastrar Fornecedor");
-                cadastrarFornecedor();
+                fornecedorService.cadastrarFornecedor(new Fornecedor());
                 break;
             case 2:
-                System.out.println("Listar Fornecedor");
-                listarFornecedor();
+                fornecedorService.listarFornecedor();
                 break;
             case 3:
-                System.out.println("Buscar Fornecedor");
-                buscarFornecedor();
+                fornecedorService.buscarFornecedor();
                 break;
             case 4:
-                System.out.println("Atualizar Fornecedor");
-                atualizarFornecedor();
+                fornecedorService.atualizaFornecedor();
                 break;
             case 5:
-                System.out.println("Excluir Fornecedor");
-                excluirFornecedor();
+                fornecedorService.excluirFornecedor();
                 break;
             case 6:
                 System.out.println("Voltar para o Menu Principal");
@@ -51,25 +52,5 @@ public class MenuFornecedor {
                 System.out.println("Opção inválida");
                 return;
         }
-    }
-
-    private void cadastrarFornecedor() {
-
-    }
-
-    private void listarFornecedor() {
-
-    }
-
-    private void buscarFornecedor() {
-
-    }
-
-    private void atualizarFornecedor() {
-
-    }
-
-    private void excluirFornecedor() {
-
     }
 }

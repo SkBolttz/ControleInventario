@@ -34,7 +34,7 @@ public class Fornecedor {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "fornecedor_id")
     private List<Produto> produto;
-    
+
     public Fornecedor(){}
 
     public Fornecedor(long id, String nome, String email, String telefone) {
@@ -95,5 +95,12 @@ public class Fornecedor {
         return true;
     }
 
-    
+    @Override
+    public String toString() {
+        return String.format("Nome: %s \n" +
+                             "E-mail: %s \n" +
+                             "Telefone: %s \n" +
+                             "Categoria: %s \n", nome, email, telefone, categoria) +
+                             "----------------------------------";
+    }
 }
