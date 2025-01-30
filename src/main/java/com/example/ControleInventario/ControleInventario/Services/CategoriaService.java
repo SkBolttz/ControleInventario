@@ -1,14 +1,13 @@
 package com.example.ControleInventario.ControleInventario.Services;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.ControleInventario.ControleInventario.Entities.Categoria;
-import com.example.ControleInventario.ControleInventario.Entities.Fornecedor;
 import com.example.ControleInventario.ControleInventario.Repository.CategoriaRepository;
-import com.example.ControleInventario.ControleInventario.Repository.FornecedorRepository;
 
 @Service
 public class CategoriaService {
@@ -23,7 +22,6 @@ public class CategoriaService {
         categoria.setNome(sc.nextLine());
 
         System.out.println("Informe a descricao da Categoria: ");
-
         categoria.setDescricao(sc.nextLine());
 
         System.out.println("Categoria Salva!");
@@ -44,9 +42,7 @@ public class CategoriaService {
         Categoria categoria = (Categoria) categoriaRepository.findByNome(nomeCategoria);
 
         if (categoria != null) {
-            for (Categoria c : categoriaRepository.findAll()) {
-                System.out.println(c);
-            }
+            System.out.println(categoriaRepository.findByNome(nomeCategoria).toString());
         } else {
             System.out.println("Categoria nao encontrada!");
         }
@@ -99,5 +95,16 @@ public class CategoriaService {
         } else {
             System.out.println("Categoria não encontrada!");
         }
+    }
+
+    // Métodos para API REST
+
+    public List<Categoria> listCategory() {
+        return categoriaRepository.findAll();
+    }
+
+    public Categoria findByNome(String nomeCategoria) {
+        Categoria c = categoriaRepository.findByNome(nomeCategoria);
+        return c;
     }
 }

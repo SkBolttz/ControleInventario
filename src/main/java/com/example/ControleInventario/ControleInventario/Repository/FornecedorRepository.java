@@ -6,6 +6,6 @@ import com.example.ControleInventario.ControleInventario.Entities.Fornecedor;
 
 public interface FornecedorRepository extends JpaRepository<Fornecedor, Long> {
 
-    Object findByNome(String nomeFornecedor);
+    Fornecedor findByNome(String nomeFornecedor);
     
 }

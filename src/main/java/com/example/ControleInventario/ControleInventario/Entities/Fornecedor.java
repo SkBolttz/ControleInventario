@@ -5,6 +5,7 @@ import java.util.List;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,7 +28,7 @@ public class Fornecedor {
     private String email;
     private String telefone;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
@@ -37,11 +38,12 @@ public class Fornecedor {
 
     public Fornecedor(){}
 
-    public Fornecedor(long id, String nome, String email, String telefone) {
+    public Fornecedor(long id, String nome, String email, String telefone, Categoria categoria) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
+        this.categoria = categoria;
     }
 
     public long getId() {
@@ -50,6 +52,15 @@ public class Fornecedor {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public String getNome() {
@@ -97,10 +108,9 @@ public class Fornecedor {
 
     @Override
     public String toString() {
-        return String.format("Nome: %s \n" +
-                             "E-mail: %s \n" +
+        return String.format("Nome: %s \n" +    
+                             "Email: %s \n" +    
                              "Telefone: %s \n" +
-                             "Categoria: %s \n", nome, email, telefone, categoria) +
-                             "----------------------------------";
+                             "----------------------------------\n", nome, email, telefone);
     }
 }

@@ -45,7 +45,6 @@ public class MenuCategoria {
                 categoriaService.excluirCategoria();
                 break;
             case 6:
-                System.out.println("Voltar para o Menu Principal");
                 break;
             default:
                 System.out.println("Opção inválida");

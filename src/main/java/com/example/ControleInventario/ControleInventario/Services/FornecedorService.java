@@ -1,9 +1,11 @@
 package com.example.ControleInventario.ControleInventario.Services;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.ControleInventario.ControleInventario.Entities.Categoria;
 import com.example.ControleInventario.ControleInventario.Entities.Fornecedor;
@@ -31,16 +33,16 @@ public class FornecedorService {
         fornecedor.setTelefone(sc.nextLine());
 
         System.out.println("Informe a categoria do Fornecedor: ");
-        Categoria categoria = new Categoria();
-        categoria.setNome(sc.nextLine());
+        String nomeCategoria = sc.nextLine();
 
-        if (categoriaRepository.findByNome(categoria.getNome()) != null) {
-            categoria.setId(((Categoria) categoriaRepository.findByNome(categoria.getNome())).getId());
+        Categoria categoria = categoriaRepository.findByNome(nomeCategoria);
+
+        if(categoria != null){
+            fornecedor.setCategoria(categoria);
             fornecedorRepository.save(fornecedor);
-            System.out.println("Fornecedor cadastrado!");
-        } else {
+            System.out.println("Fornecedor Cadastrado!");
+        }else{
             System.out.println("Categoria nao encontrada!");
-            return;
         }
     }
 
@@ -56,9 +58,7 @@ public class FornecedorService {
         String nomeFornecedor = sc.nextLine();
 
         if (fornecedorRepository.findByNome(nomeFornecedor) != null) {
-            for (Fornecedor f : fornecedorRepository.findAll()) {
-                System.out.println(f);
-            }
+            System.out.println(fornecedorRepository.findByNome(nomeFornecedor).toString());
         } else {
             System.out.println("Fonecedor nao encontrado!");
         }
@@ -76,7 +76,17 @@ public class FornecedorService {
             fornecedor.setEmail(sc.nextLine());
             System.out.println("Informe o novo telefone do Fornecedor:");
             fornecedor.setTelefone(sc.nextLine());
+            System.out.println("Informe a nova categoria do Fornecedor:");
+            String nomeCategoria = sc.nextLine();
 
+            Categoria categoria = categoriaRepository.findByNome(nomeCategoria);
+
+            if(categoria != null){
+                fornecedor.setCategoria(categoria);
+            }else{
+                System.out.println("Categoria não encontrada!");
+            }
+            
             fornecedor.setId(((Fornecedor) fornecedorRepository.findByNome(nomeFornecedor)).getId());
             fornecedorRepository.save(fornecedor);
 
@@ -100,5 +110,16 @@ public class FornecedorService {
         } else {
             System.out.println("Fornecedor nao encontrado!");
         }
+    }
+
+    // Métodos para API REST
+
+    public List<Fornecedor> listFornecedor(){
+        return fornecedorRepository.findAll();
+    }
+
+    public Fornecedor FindByNome(@PathVariable String nomeFornecedor) {
+        Fornecedor f = fornecedorRepository.findByNome(nomeFornecedor);
+        return f;
     }
 }

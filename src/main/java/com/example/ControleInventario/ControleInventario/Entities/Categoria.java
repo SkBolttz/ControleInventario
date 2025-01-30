@@ -1,5 +1,4 @@
 package com.example.ControleInventario.ControleInventario.Entities;
-
 import java.util.Objects;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "categoria")
+@Table(name = "tb_categoria")
 public class Categoria {
     
     @Id
@@ -25,8 +24,7 @@ public class Categoria {
     private String nome;
     private String descricao; 
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "categoria_id")
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.PERSIST)
     private List<Produto> produto;
 
     public Categoria(){}
