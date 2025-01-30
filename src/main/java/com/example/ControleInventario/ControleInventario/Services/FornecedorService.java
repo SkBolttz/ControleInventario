@@ -37,11 +37,11 @@ public class FornecedorService {
 
         Categoria categoria = categoriaRepository.findByNome(nomeCategoria);
 
-        if(categoria != null){
+        if (categoria != null) {
             fornecedor.setCategoria(categoria);
             fornecedorRepository.save(fornecedor);
             System.out.println("Fornecedor Cadastrado!");
-        }else{
+        } else {
             System.out.println("Categoria nao encontrada!");
         }
     }
@@ -81,12 +81,12 @@ public class FornecedorService {
 
             Categoria categoria = categoriaRepository.findByNome(nomeCategoria);
 
-            if(categoria != null){
+            if (categoria != null) {
                 fornecedor.setCategoria(categoria);
-            }else{
+            } else {
                 System.out.println("Categoria não encontrada!");
             }
-            
+
             fornecedor.setId(((Fornecedor) fornecedorRepository.findByNome(nomeFornecedor)).getId());
             fornecedorRepository.save(fornecedor);
 
@@ -114,7 +114,7 @@ public class FornecedorService {
 
     // Métodos para API REST
 
-    public List<Fornecedor> listFornecedor(){
+    public List<Fornecedor> listFornecedor() {
         return fornecedorRepository.findAll();
     }
 

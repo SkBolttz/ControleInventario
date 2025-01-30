@@ -7,5 +7,5 @@ import com.example.ControleInventario.ControleInventario.Entities.Categoria;
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
 
     Categoria findByNome(String nomeCategoria);
-    
+
 }

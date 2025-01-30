@@ -18,7 +18,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class ProdutoService {
-    
+
     @Autowired
     private ProdutoRepository produtoRepository;
 
@@ -44,11 +44,11 @@ public class ProdutoService {
         String nomeCategoria = sc.nextLine();
 
         Categoria categoria = categoriaRepository.findByNome(nomeCategoria);
-        if(categoria != null){
+        if (categoria != null) {
             categoria.setId(categoriaRepository.findByNome(nomeCategoria).getId());
             produto.setCategoria(categoria);
             produtoRepository.save(produto);
-        }else{
+        } else {
             System.out.println("Categoria não encotrada!");
         }
 
@@ -57,9 +57,9 @@ public class ProdutoService {
 
         Fornecedor fornecedor = fornecedorRepository.findByNome(nomeFornecedor);
 
-        if(fornecedor != null){
+        if (fornecedor != null) {
             produto.setFornecedor(fornecedor);
-        }else{
+        } else {
             System.out.println("Fornecedor não encontrado!");
         }
 
@@ -67,32 +67,32 @@ public class ProdutoService {
         System.out.println("Produto cadastrado!");
     }
 
-    public void listarProduto(){
+    public void listarProduto() {
         System.out.println("Produtos:");
         for (Produto produto : produtoRepository.findAll()) {
             System.out.println(produto);
         }
     }
 
-    public void buscarProduto(){
+    public void buscarProduto() {
         System.out.println("Informe o nome do produto:");
         String nomeProduto = sc.nextLine();
 
-        if(produtoRepository.findByNome(nomeProduto) != null){
+        if (produtoRepository.findByNome(nomeProduto) != null) {
             System.out.println(produtoRepository.findByNome(nomeProduto).toString());
-        }else{
+        } else {
             System.out.println("Produto nao encontrado!");
         }
     }
 
     @Transactional
-    public void atualizarProduto(){
+    public void atualizarProduto() {
         System.out.println("Informe o nome do produto:");
         String nomeProduto = sc.nextLine();
 
         Produto produto = produtoRepository.findByNome(nomeProduto);
 
-        if(produto != null){
+        if (produto != null) {
             System.out.println("Novo nome do produto:");
             produto.setNome(sc.nextLine());
             System.out.println("Nova descrição do produto:");
@@ -106,9 +106,9 @@ public class ProdutoService {
 
             Categoria categoria = categoriaRepository.findByNome(nomeCategoria);
 
-            if(categoria != null){
+            if (categoria != null) {
                 produto.setCategoria(categoria);
-            }else{
+            } else {
                 System.out.println("Categoria nao encontrada!");
             }
 
@@ -117,9 +117,9 @@ public class ProdutoService {
 
             Fornecedor fornecedor = fornecedorRepository.findByNome(nomeFornecedor);
 
-            if(fornecedor != null){
+            if (fornecedor != null) {
                 produto.setId(produtoRepository.findByNome(nomeProduto).getId());
-            }else{
+            } else {
                 System.out.println("Fornecedor nao encontrado!");
             }
 
@@ -130,29 +130,29 @@ public class ProdutoService {
     }
 
     @Transactional
-    public void excluirProduto(){
+    public void excluirProduto() {
         System.out.println("Informe o nome do produto:");
         String nomeProduto = sc.nextLine();
 
         Produto produto = produtoRepository.findByNome(nomeProduto);
 
-        if(produto != null){
+        if (produto != null) {
             produto.setId(produtoRepository.findByNome(nomeProduto).getId());
 
             produtoRepository.deleteById(produto.getId());
             System.out.println("Produto excluido!");
-        }else{
+        } else {
             System.out.println("Produto não encontrado!");
         }
     }
 
     // Método para API REST
 
-    public List<Produto> listProduto(){
+    public List<Produto> listProduto() {
         return produtoRepository.findAll();
     }
 
-    public Produto FindByNome(@PathVariable String nomeProduto){
+    public Produto FindByNome(@PathVariable String nomeProduto) {
         Produto p = produtoRepository.findByNome(nomeProduto);
         return p;
     }

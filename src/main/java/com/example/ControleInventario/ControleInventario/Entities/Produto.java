@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "produto")
 public class Produto {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -31,17 +31,19 @@ public class Produto {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
-    
-    public Produto(){}
 
-    public Produto(String nome, String descricao, double preco, int quantidadeEmEstoque, Categoria categoria, Fornecedor fornecedor) {
+    public Produto() {
+    }
+
+    public Produto(String nome, String descricao, double preco, int quantidadeEmEstoque, Categoria categoria,
+            Fornecedor fornecedor) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.quantidadeEmEstoque = quantidadeEmEstoque;
         this.categoria = categoria;
         this.fornecedor = fornecedor;
-        
+
     }
 
     public Fornecedor getFornecedor() {
@@ -119,12 +121,12 @@ public class Produto {
         return true;
     }
 
-    public String toString(){
-        return String.format("Id: %d \n " + 
-                             "Nome: %s \n, " +
-                             "Descrição: %s \n, " +
-                             "Preço: %.2f \n, " +
-                             "Quantidade Em Estoque: %d " +
-                             id, nome, descricao, preco, quantidadeEmEstoque );
+    public String toString() {
+        return String.format("Id: %d \n " +
+                "Nome: %s \n, " +
+                "Descrição: %s \n, " +
+                "Preço: %.2f \n, " +
+                "Quantidade Em Estoque: %d " +
+                id, nome, descricao, preco, quantidadeEmEstoque);
     }
 }

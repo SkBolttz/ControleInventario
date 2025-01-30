@@ -7,5 +7,5 @@ import com.example.ControleInventario.ControleInventario.Entities.Fornecedor;
 public interface FornecedorRepository extends JpaRepository<Fornecedor, Long> {
 
     Fornecedor findByNome(String nomeFornecedor);
-    
+
 }

@@ -15,7 +15,7 @@ public class MenuFornecedor {
 
     @Autowired
     private FornecedorService fornecedorService;
-    
+
     public void exibirMenuFornecedor() {
         System.out.println("!---------------------------------------!");
         System.out.println("1 - Cadastrar Fornecedor");

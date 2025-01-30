@@ -1,4 +1,5 @@
 package com.example.ControleInventario.ControleInventario.Entities;
+
 import java.util.Objects;
 import java.util.List;
 
@@ -8,26 +9,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_categoria")
 public class Categoria {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(unique = true)
     private String nome;
-    private String descricao; 
+    private String descricao;
 
     @OneToMany(mappedBy = "categoria", cascade = CascadeType.PERSIST)
     private List<Produto> produto;
 
-    public Categoria(){}
+    public Categoria() {
+    }
 
     public Categoria(String nome, String descricao) {
         this.nome = nome;
@@ -80,7 +81,7 @@ public class Categoria {
     @Override
     public String toString() {
         return String.format("Nome: %s \n" +
-                             "Descrição: %s \n", nome, descricao) +
-                             "----------------------------------";
+                "Descrição: %s \n", nome, descricao) +
+                "----------------------------------";
     }
 }

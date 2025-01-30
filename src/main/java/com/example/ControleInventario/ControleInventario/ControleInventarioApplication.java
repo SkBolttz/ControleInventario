@@ -7,9 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.ControleInventario.ControleInventario.Principal.MenuPrincipal;
 
-
 @SpringBootApplication
-public class ControleInventarioApplication implements CommandLineRunner{
+public class ControleInventarioApplication implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ControleInventarioApplication.class, args);
@@ -17,10 +16,10 @@ public class ControleInventarioApplication implements CommandLineRunner{
 
 	@Autowired
 	private MenuPrincipal menuPrincipal;
-	
+
 	@Override
 	public void run(String... args) throws Exception {
-		
+
 		menuPrincipal.exibirMenuPrincipal();
 	}
 }

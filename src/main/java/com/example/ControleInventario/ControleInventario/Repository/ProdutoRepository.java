@@ -7,5 +7,5 @@ import com.example.ControleInventario.ControleInventario.Entities.Produto;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     Produto findByNome(String nomeProduto);
-    
+
 }

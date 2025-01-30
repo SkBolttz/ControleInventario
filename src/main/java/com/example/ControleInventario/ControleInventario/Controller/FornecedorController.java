@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.ControleInventario.ControleInventario.DTO.FornecedorDTO;
 import com.example.ControleInventario.ControleInventario.Entities.Fornecedor;
 import com.example.ControleInventario.ControleInventario.Services.FornecedorService;
 
 @RestController
 @RequestMapping(value = "/fornecedor")
 public class FornecedorController {
-    
+
     private final FornecedorService fornecedorService;
 
     public FornecedorController(FornecedorService fornecedorService) {
@@ -22,16 +23,18 @@ public class FornecedorController {
     }
 
     @GetMapping
-    public List<Fornecedor> findAll(){
-        return fornecedorService.listFornecedor();
+    public List<FornecedorDTO> findAll() {
+        List<Fornecedor> fornecedor = fornecedorService.listFornecedor();
+        return fornecedor.stream().map(FornecedorDTO::new).toList();
     }
 
     @GetMapping(value = "/{nomeFornecedor}")
-    public ResponseEntity<Fornecedor> findByNome(@PathVariable String nomeFornecedor) {
+    public ResponseEntity<FornecedorDTO> findByNome(@PathVariable String nomeFornecedor) {
         Fornecedor f = fornecedorService.FindByNome(nomeFornecedor);
+        FornecedorDTO fDTO = new FornecedorDTO(f);
 
-        if(f != null) {
-            return ResponseEntity.ok(f);
+        if (f != null) {
+            return ResponseEntity.ok(fDTO);
         } else {
             return ResponseEntity.notFound().build();
         }

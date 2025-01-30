@@ -1,4 +1,5 @@
 package com.example.ControleInventario.ControleInventario.Entities;
+
 import java.util.Objects;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "fornecedor")
 public class Fornecedor {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -36,7 +37,8 @@ public class Fornecedor {
     @JoinColumn(name = "fornecedor_id")
     private List<Produto> produto;
 
-    public Fornecedor(){}
+    public Fornecedor() {
+    }
 
     public Fornecedor(long id, String nome, String email, String telefone, Categoria categoria) {
         this.id = id;
@@ -54,7 +56,6 @@ public class Fornecedor {
         this.id = id;
     }
 
-    
     public Categoria getCategoria() {
         return categoria;
     }
@@ -108,9 +109,9 @@ public class Fornecedor {
 
     @Override
     public String toString() {
-        return String.format("Nome: %s \n" +    
-                             "Email: %s \n" +    
-                             "Telefone: %s \n" +
-                             "----------------------------------\n", nome, email, telefone);
+        return String.format("Nome: %s \n" +
+                "Email: %s \n" +
+                "Telefone: %s \n" +
+                "----------------------------------\n", nome, email, telefone);
     }
 }
